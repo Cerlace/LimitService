@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.29.xsd">
+
+    <changeSet id="12-04-2025-05-transaction-table-limit-join" author="Daniil">
+        <addForeignKeyConstraint baseTableName="transaction"
+                                 baseColumnNames="spend_limit_id"
+                                 referencedTableName="spend_limit"
+                                 referencedColumnNames="id"
+                                 constraintName="FK_transaction_spend_limit"/>
+    </changeSet>
+</databaseChangeLog>
