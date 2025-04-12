@@ -15,4 +15,6 @@
              file="12-04-2025-04-transaction-table-setup.xml"/>
     <include relativeToChangelogFile="true"
              file="12-04-2025-05-transaction-table-limit-join.xml"/>
+    <include relativeToChangelogFile="true"
+             file="12-04-2025-06-limit-exceeded-column.xml"/>
 </databaseChangeLog>

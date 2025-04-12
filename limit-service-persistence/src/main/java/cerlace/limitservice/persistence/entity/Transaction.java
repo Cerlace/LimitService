@@ -52,6 +52,9 @@ public class Transaction {
             nullable = false)
     private OffsetDateTime datetime;
 
+    @Column(name = "limit_exceeded", nullable = false)
+    private Boolean limitExceeded;
+
     @ManyToOne
     @JoinColumn(name = "spend_limit_id", nullable = false)
     private SpendLimit spendLimit;
