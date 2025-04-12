@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.29.xsd">
+
+    <include relativeToChangelogFile="true"
+             file="12-04-2025-01-exchange-rate-table-setup.xml"/>
+    <include relativeToChangelogFile="true"
+             file="12-04-2025-02-exchange-rate-unique-constraint.xml"/>
+    <include relativeToChangelogFile="true"
+             file="12-04-2025-03-spend-limit-table-setup.xml"/>
+    <include relativeToChangelogFile="true"
+             file="12-04-2025-04-transaction-table-setup.xml"/>
+    <include relativeToChangelogFile="true"
+             file="12-04-2025-05-transaction-table-limit-join.xml"/>
+    <include relativeToChangelogFile="true"
+             file="12-04-2025-06-limit-exceeded-column.xml"/>
+</databaseChangeLog>
