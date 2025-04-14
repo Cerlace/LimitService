@@ -10,4 +10,8 @@ public class SpendLimitUtils {
                 .expenseCategory(expenseCategory)
                 .build();
     }
+
+    public static boolean isCurrentMonthLimit(SpendLimit limit) {
+        return DateTimeUtils.isCurrentMonth(limit.getDatetime());
+    }
 }

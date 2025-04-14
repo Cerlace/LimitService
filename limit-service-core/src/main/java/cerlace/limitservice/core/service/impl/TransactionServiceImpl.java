@@ -5,6 +5,7 @@ import cerlace.limitservice.core.dto.TransactionResponse;
 import cerlace.limitservice.core.external.ExchangeRateApiClient;
 import cerlace.limitservice.core.mapper.ExchangeRateMapper;
 import cerlace.limitservice.core.mapper.TransactionMapper;
+import cerlace.limitservice.core.service.SpendLimitService;
 import cerlace.limitservice.core.service.TransactionService;
 import cerlace.limitservice.core.utils.Constants;
 import cerlace.limitservice.core.utils.DateTimeUtils;
@@ -28,11 +29,12 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TransactionServiceImpl implements TransactionService {
 
+    private final SpendLimitService spendLimitService;
+
     private final TransactionMapper transactionMapper;
     private final ExchangeRateMapper exchangeRateMapper;
 
     private final TransactionRepository transactionRepository;
-    private final SpendLimitRepository spendLimitRepository;
     private final ExchangeRateRepository exchangeRateRepository;
 
     private final ExchangeRateApiClient exchangeRateApiClient;
@@ -42,18 +44,7 @@ public class TransactionServiceImpl implements TransactionService {
     public TransactionResponse saveTransaction(TransactionCreateRequest request) {
         Transaction transaction = transactionMapper.toEntity(request);
 
-        Optional<SpendLimit> spendLimitOptional = spendLimitRepository
-                .findTopByExpenseCategoryOrderByDatetimeDesc(transaction.getExpenseCategory());
-        SpendLimit spendLimit;
-        if (spendLimitOptional.isEmpty() ||
-                !DateTimeUtils.isCurrentMonth(spendLimitOptional.get().getDatetime())) {
-            spendLimit = spendLimitRepository.save(
-                    SpendLimitUtils.getBaseSpendLimit(transaction.getExpenseCategory()));
-        } else {
-            spendLimit = spendLimitOptional.get();
-        }
-
-        transaction.setSpendLimit(spendLimit);
+        transaction.setSpendLimit(spendLimitService.getCurrentSpendLimit(transaction.getExpenseCategory()));
 
         if (transaction.getCurrencyShortname().equals(Constants.USD_SHORTNAME)) {
             transaction.setUsdSum(transaction.getSum());
@@ -85,7 +76,7 @@ public class TransactionServiceImpl implements TransactionService {
         transaction.setLimitExceeded(
                 monthTransactionsSum
                         .add(transaction.getUsdSum())
-                        .compareTo(spendLimit.getUsdSum()) > 0
+                        .compareTo(transaction.getSpendLimit().getUsdSum()) > 0
         );
 
         return transactionMapper.toDto(transactionRepository.save(transaction));
