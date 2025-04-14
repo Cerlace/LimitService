@@ -17,16 +17,11 @@ import cerlace.limitservice.persistence.repository.ExchangeRateRepository;
 import cerlace.limitservice.persistence.repository.SpendLimitRepository;
 import cerlace.limitservice.persistence.repository.TransactionRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.YearMonth;
-import java.time.temporal.TemporalAdjusters;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -60,7 +55,7 @@ public class TransactionServiceImpl implements TransactionService {
 
         transaction.setSpendLimit(spendLimit);
 
-        if (transaction.getCurrencyShortname().equals(Constants.BASE_CURRENCY)) {
+        if (transaction.getCurrencyShortname().equals(Constants.USD_SHORTNAME)) {
             transaction.setUsdSum(transaction.getSum());
         } else {
             Optional<ExchangeRate> exchangeRateOptional = exchangeRateRepository
