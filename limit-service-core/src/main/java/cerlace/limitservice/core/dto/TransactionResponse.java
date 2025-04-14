@@ -37,5 +37,5 @@ public class TransactionResponse {
     private OffsetDateTime limitDatetime;
     @Builder.Default
     @JsonProperty("limit_currency_shortname")
-    private String limitCurrencyShortname = Constants.BASE_CURRENCY;
+    private String limitCurrencyShortname = Constants.USD_SHORTNAME;
 }
