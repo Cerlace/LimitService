@@ -1,6 +1,7 @@
 package cerlace.limitservice.core;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 
@@ -31,4 +32,6 @@ public class MockConstants {
 
     public static final long ACCOUNT_FROM = 123L;
     public static final long ACCOUNT_TO = 123L;
+
+    public static final LocalDate TEST_LOCAL_DATE = LocalDate.of(2025, 1, 1);
 }
