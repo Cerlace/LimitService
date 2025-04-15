@@ -15,6 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Контроллер для обработки банковских транзакций.
+ * <p>
+ * Предоставляет REST API для сохранения новых транзакций
+ * с проверкой на превышение установленных лимитов.
+ */
 @Tag(name = "Модуль транзакций",
         description = "API для обработки входящих транзакций")
 @RequiredArgsConstructor
@@ -24,6 +30,13 @@ public class TransactionController {
 
     private final TransactionService transactionService;
 
+    /**
+     * Сохраняет новую транзакцию с проверкой лимитов.
+     *
+     * @param request данные транзакции ({@link TransactionCreateRequest})
+     * @return ResponseEntity с информацией о сохраненной транзакции ({@link TransactionResponse})
+     * @see TransactionService#saveTransaction(TransactionCreateRequest)
+     */
     @Operation(
             summary = "Сохранить транзакцию",
             description = """

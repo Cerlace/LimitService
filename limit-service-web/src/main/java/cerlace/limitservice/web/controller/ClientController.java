@@ -19,6 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * Контроллер для работы с клиентскими данными и лимитами.
+ * <p>
+ * Предоставляет REST API для управления лимитами расходов и получения информации
+ * о транзакциях, превысивших установленные лимиты.
+ */
 @Tag(name = "Клиентский модуль",
         description = """
                 API для управлением лимитами на расходные операции
@@ -30,6 +36,13 @@ public class ClientController {
 
     private final ClientService clientService;
 
+    /**
+     * Устанавливает новый лимит расходов для указанной категории.
+     *
+     * @param request запрос на установку лимита ({@link SpendLimitCreateRequest})
+     * @return ResponseEntity с информацией об установленном лимите ({@link SpendLimitResponse})
+     * @see ClientService#setSpendLimit(SpendLimitCreateRequest request)
+     */
     @Operation(
             summary = "Установить расходный лимит",
             description = """
@@ -47,6 +60,12 @@ public class ClientController {
         return ResponseEntity.ok(createdLimit);
     }
 
+    /**
+     * Получает все установленные лимиты расходов.
+     *
+     * @return список всех лимитов ({@link SpendLimitResponse})
+     * @see ClientService#getAllSpendLimits()
+     */
     @Operation(
             summary = "Получить все лимиты",
             description = "Получает все существующие расходные лимиты"
@@ -56,6 +75,12 @@ public class ClientController {
         return clientService.getAllSpendLimits();
     }
 
+    /**
+     * Получает транзакции, превысившие установленные лимиты.
+     *
+     * @return список транзакций ({@link TransactionResponse}) с превышением лимита
+     * @see ClientService#getLimitExceededTransactions()
+     */
     @Operation(
             summary = "Получить все лимитные транзакции",
             description = "Получает все транзакции, которые превысили установленный расходный лимит"
