@@ -19,6 +19,17 @@ import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
+import static cerlace.limitservice.persistence.Constants.DECIMAL_SCALE;
+
+/**
+ * Сущность, представляющая лимит расходов для определенной категории.
+ * <p>
+ * Хранит информацию об установленном лимите расходов в USD для конкретной категории,
+ * а также дату и время установки лимита. Используется для контроля расходов клиентов.
+ *
+ * @see Transaction
+ * @see ExpenseCategory
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -30,7 +41,7 @@ public class SpendLimit {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "usd_sum", scale = 2, nullable = false)
+    @Column(name = "usd_sum", scale = DECIMAL_SCALE, nullable = false)
     private BigDecimal usdSum;
 
     @Enumerated(value = EnumType.STRING)
