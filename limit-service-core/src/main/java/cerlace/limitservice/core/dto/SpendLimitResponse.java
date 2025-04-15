@@ -12,6 +12,14 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
+/**
+ * DTO для ответа с информацией о лимите расходов.
+ * <p>
+ * Содержит полную информацию об установленном лимите, включая дату его создания.
+ * Используется как выходной формат данных в API при запросе информации о лимитах.
+ *
+ * @see SpendLimitCreateRequest
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

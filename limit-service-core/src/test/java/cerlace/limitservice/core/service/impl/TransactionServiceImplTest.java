@@ -7,7 +7,6 @@ import cerlace.limitservice.core.service.TransactionService;
 import cerlace.limitservice.core.utils.Constants;
 import cerlace.limitservice.persistence.entity.SpendLimit;
 import cerlace.limitservice.persistence.entity.Transaction;
-import cerlace.limitservice.persistence.enums.ExpenseCategory;
 import cerlace.limitservice.persistence.repository.SpendLimitRepository;
 import cerlace.limitservice.persistence.repository.TransactionRepository;
 import org.junit.jupiter.api.Test;
@@ -17,7 +16,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
 
 import static cerlace.limitservice.core.MockConstants.*;
 import static org.junit.jupiter.api.Assertions.*;

@@ -12,6 +12,14 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
+/**
+ * DTO для запроса на создание транзакции.
+ * <p>
+ * Содержит все необходимые данные для создания транзакции.
+ * Используется как входной формат данных в API при создании транзакции.
+ *
+ * @see TransactionResponse
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

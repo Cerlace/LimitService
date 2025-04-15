@@ -13,6 +13,14 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
+/**
+ * DTO для ответа с информацией о транзакции.
+ * <p>
+ * Содержит полные данные о транзакции, включая информацию о лимите расходов.
+ * Используется как выходной формат данных в API при запросе информации о транзакциях.
+ *
+ * @see TransactionCreateRequest DTO для запроса на создание транзакции
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

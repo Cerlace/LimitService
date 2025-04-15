@@ -9,7 +9,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-
+/**
+ * DTO для создания нового лимита расходов.
+ * <p>
+ * Содержит данные, необходимые для установки лимита расходов по конкретной категории.
+ * Используется как входной параметр в API при создании лимита.
+ *
+ * @see SpendLimitResponse
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
