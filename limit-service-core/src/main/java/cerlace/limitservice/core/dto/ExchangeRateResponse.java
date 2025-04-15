@@ -9,6 +9,13 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.time.Instant;
 
+/**
+ * DTO представляющий ответ с информацией об обменном курсе между валютами.
+ * <p>
+ * Хранит данные о валютной паре, текущем обменном курсе и временной метке,
+ * когда курс был получен. Используется для получения актуальной информации
+ * об обменных курсах для различных валют.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

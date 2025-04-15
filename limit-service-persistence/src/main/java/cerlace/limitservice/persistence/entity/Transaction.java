@@ -20,6 +20,18 @@ import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
+import static cerlace.limitservice.persistence.Constants.CURRENCY_SHORTNAME_LENGTH;
+import static cerlace.limitservice.persistence.Constants.DECIMAL_SCALE;
+
+/**
+ * Сущность, представляющая транзакцию в системе.
+ * <p>
+ * Содержит информацию о денежном переводе между счетами, включая данные об отправителе,
+ * получателе, сумме, валюте и категории расхода. Также хранит информацию о превышении лимитов.
+ *
+ * @see SpendLimit
+ * @see ExpenseCategory
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -27,6 +39,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "transaction")
 public class Transaction {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -37,13 +50,13 @@ public class Transaction {
     @Column(name = "account_to", nullable = false)
     private Long accountTo;
 
-    @Column(name = "currency_shortname", length = 3, nullable = false)
+    @Column(name = "currency_shortname", length = CURRENCY_SHORTNAME_LENGTH, nullable = false)
     private String currencyShortname;
 
-    @Column(name = "sum", scale = 2, nullable = false)
+    @Column(name = "sum", scale = DECIMAL_SCALE, nullable = false)
     private BigDecimal sum;
 
-    @Column(name = "usd_sum", scale = 2, nullable = false)
+    @Column(name = "usd_sum", scale = DECIMAL_SCALE, nullable = false)
     private BigDecimal usdSum;
 
     @Enumerated(value = EnumType.STRING)
