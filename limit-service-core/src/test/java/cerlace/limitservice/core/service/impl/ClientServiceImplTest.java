@@ -45,8 +45,8 @@ class ClientServiceImplTest {
         SpendLimit persistedEntity = spendLimitRepository.findAll().get(0);
 
         assertEquals(1, spendLimitRepository.count());
-        assertEquals(request.getUsdSum(), persistedEntity.getUsdSum());
-        assertEquals(response.getUsdSum(), persistedEntity.getUsdSum());
+        assertEquals(0, request.getUsdSum().compareTo(persistedEntity.getUsdSum()));
+        assertEquals(0, response.getUsdSum().compareTo(persistedEntity.getUsdSum()));
     }
 
     @Test

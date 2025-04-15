@@ -2,6 +2,7 @@ package cerlace.limitservice.core;
 
 import cerlace.limitservice.core.dto.ExchangeRateResponse;
 import cerlace.limitservice.core.dto.SpendLimitCreateRequest;
+import cerlace.limitservice.core.dto.TransactionCreateRequest;
 import cerlace.limitservice.persistence.entity.ExchangeRate;
 import cerlace.limitservice.persistence.entity.SpendLimit;
 import cerlace.limitservice.persistence.entity.Transaction;
@@ -54,6 +55,17 @@ public class MockUtils {
                 .currencyShortname(EUR_SHORTNAME)
                 .date(TEST_LOCAL_DATE)
                 .rate(TEST_RATE)
+                .build();
+    }
+
+    public static TransactionCreateRequest createTransactionCreateRequest() {
+        return TransactionCreateRequest.builder()
+                .accountFrom(ACCOUNT_FROM)
+                .accountTo(ACCOUNT_TO)
+                .currencyShortname(USD_SHORTNAME)
+                .sum(TEST_SUM)
+                .expenseCategory(ExpenseCategory.SERVICE)
+                .datetime(OffsetDateTime.now())
                 .build();
     }
 }

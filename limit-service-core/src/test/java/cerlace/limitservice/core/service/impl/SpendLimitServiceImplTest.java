@@ -32,10 +32,10 @@ class SpendLimitServiceImplTest {
         spendLimitRepository.save(savedLimit);
 
         SpendLimit currentLimit = spendLimitService.getCurrentSpendLimit(savedLimit.getExpenseCategory());
-        assertEquals(savedLimit.getUsdSum(), currentLimit.getUsdSum());
+        assertEquals(0, savedLimit.getUsdSum().compareTo(currentLimit.getUsdSum()));
 
         spendLimitRepository.deleteAll();
         SpendLimit baseLimit = spendLimitService.getCurrentSpendLimit(ExpenseCategory.SERVICE);
-        assertEquals(Constants.BASE_LIMIT, baseLimit.getUsdSum());
+        assertEquals(0, Constants.BASE_LIMIT.compareTo(baseLimit.getUsdSum()));
     }
 }
