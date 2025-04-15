@@ -25,4 +25,10 @@ public class MockConstants {
 
     public static final BigDecimal TEST_TRANSACTIONS_SUM = BigDecimal.valueOf(1000);
     public static final BigDecimal TEST_LIMIT = BigDecimal.valueOf(900);
+
+    public static final BigDecimal OLD_LIMIT_SUM = BigDecimal.valueOf(1000);
+    public static final BigDecimal NEW_LIMIT_SUM = BigDecimal.valueOf(2000);
+
+    public static final long ACCOUNT_FROM = 123L;
+    public static final long ACCOUNT_TO = 123L;
 }
