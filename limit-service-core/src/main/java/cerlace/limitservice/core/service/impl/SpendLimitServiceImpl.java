@@ -21,6 +21,6 @@ public class SpendLimitServiceImpl implements SpendLimitService {
         return spendLimitRepository
                 .findTopByExpenseCategoryOrderByDatetimeDesc(expenseCategory)
                 .filter(SpendLimitUtils::isCurrentMonthLimit)
-                .orElse(spendLimitRepository.save(SpendLimitUtils.getBaseSpendLimit(expenseCategory)));
+                .orElseGet(() -> spendLimitRepository.save(SpendLimitUtils.getBaseSpendLimit(expenseCategory)));
     }
 }

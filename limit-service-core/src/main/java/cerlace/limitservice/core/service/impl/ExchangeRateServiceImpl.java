@@ -3,7 +3,6 @@ package cerlace.limitservice.core.service.impl;
 import cerlace.limitservice.core.external.ExchangeRateApiClient;
 import cerlace.limitservice.core.mapper.ExchangeRateMapper;
 import cerlace.limitservice.core.service.ExchangeRateService;
-import cerlace.limitservice.core.utils.Constants;
 import cerlace.limitservice.core.utils.CurrencyConvertUtils;
 import cerlace.limitservice.core.utils.MappingUtils;
 import cerlace.limitservice.persistence.entity.ExchangeRate;
@@ -36,7 +35,7 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
     public ExchangeRate getExchangeRate(String currencyShortname, LocalDate date) {
         return exchangeRateRepository
                 .findByCurrencyShortnameAndDate(currencyShortname, date)
-                .orElse(fetchAndSaveExchangeRate(currencyShortname,date));
+                .orElseGet(() -> fetchAndSaveExchangeRate(currencyShortname, date));
     }
 
     @Transactional
