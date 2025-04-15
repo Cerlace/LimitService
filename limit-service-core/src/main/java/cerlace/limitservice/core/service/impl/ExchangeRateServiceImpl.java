@@ -10,6 +10,7 @@ import cerlace.limitservice.persistence.entity.ExchangeRate;
 import cerlace.limitservice.persistence.repository.ExchangeRateRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -23,12 +24,14 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 
     private final ExchangeRateApiClient exchangeRateApiClient;
 
+    @Transactional
     @Override
     public BigDecimal convertCurrencyToUsd(String currencyShortname, BigDecimal sum, LocalDate date) {
         return CurrencyConvertUtils.isUsd(currencyShortname) ? sum :
                 CurrencyConvertUtils.convert(sum, getExchangeRate(currencyShortname, date).getRate());
     }
 
+    @Transactional
     @Override
     public ExchangeRate getExchangeRate(String currencyShortname, LocalDate date) {
         return exchangeRateRepository
@@ -36,6 +39,7 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
                 .orElse(fetchAndSaveExchangeRate(currencyShortname,date));
     }
 
+    @Transactional
     @Override
     public ExchangeRate fetchAndSaveExchangeRate(String currencyShortname, LocalDate date) {
         ExchangeRate requestedRate = exchangeRateMapper.toEntity(

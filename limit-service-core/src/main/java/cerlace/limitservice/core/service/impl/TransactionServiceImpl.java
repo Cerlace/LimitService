@@ -57,6 +57,7 @@ public class TransactionServiceImpl implements TransactionService {
         return transactionMapper.toDto(transactionRepository.save(transaction));
     }
 
+    @Transactional(readOnly = true)
     @Override
     public BigDecimal getMonthTransactionsSum(ExpenseCategory category, OffsetDateTime dateTime) {
         return transactionRepository

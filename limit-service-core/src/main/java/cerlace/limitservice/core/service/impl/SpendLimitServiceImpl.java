@@ -7,6 +7,7 @@ import cerlace.limitservice.persistence.enums.ExpenseCategory;
 import cerlace.limitservice.persistence.repository.SpendLimitRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -14,6 +15,7 @@ public class SpendLimitServiceImpl implements SpendLimitService {
 
     private final SpendLimitRepository spendLimitRepository;
 
+    @Transactional
     @Override
     public SpendLimit getCurrentSpendLimit(ExpenseCategory expenseCategory) {
         return spendLimitRepository
